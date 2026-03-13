@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniMarket - Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1><a href="index.html">UniMarket</a></h1>
+        <nav>
+            <a href="index.html">Início</a>
+            <a href="marketplace.html">Serviços</a>
+            <a href="anunciar.html">Anunciar</a>
+            <a href="login.html">Login</a>
+            <a href="cadastro.html" class="btn">Cadastre-se</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="form-container" style="max-width: 500px;">
+            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">Crie sua conta</h2>
+            <form action="#" id="cadastro-form">
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" placeholder="Seu nome aqui" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail Acadêmico</label>
+                    <input type="email" id="email" placeholder="seuemail@aluno.edu.br" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>O que você pretende fazer?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="perfil" value="procurar" onclick="toggleFields(false)" checked> Procurar Serviços
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="perfil" value="oferecer" onclick="toggleFields(true)"> Oferecer Serviços
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Seção Dinâmica para Prestadores (Inicia Oculta) -->
+                <div id="provider-fields">
+                    <h3 style="font-size: 1rem; color: var(--secondary-color); margin-bottom: 10px;">Dados do seu Serviço</h3>
+                    
+                    <div class="form-group">
+                        <label for="servico-titulo">Título do Serviço</label>
+                        <input type="text" id="servico-titulo" placeholder="Ex: Monitoria de Python">
+                        <p class="helper-text">Como os alunos verão seu anúncio.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="servico-exp">Sua Experiência</label>
+                        <textarea id="servico-exp" placeholder="Conte brevemente por que você é a pessoa certa para isso..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="servico-cat">Categoria</label>
+                        <select id="servico-cat">
+                            <option value="monitoria">Monitoria</option>
+                            <option value="formatacao">Formatação/ABNT</option>
+                            <option value="design">Design/Slides</option>
+                            <option value="programacao">Programação</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" placeholder="Crie uma senha forte" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmar-senha">Confirmar Senha</label>
+                    <input type="password" id="confirmar-senha" placeholder="Repita a senha" required>
+                </div>
+                
+                <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Finalizar Cadastro</button>
+                <p style="text-align: center; margin-top: 15px; font-size: 0.9rem;">
+                    Já tem conta? <a href="login.html" style="color: var(--secondary-color); font-weight: bold;">Faça login aqui</a>.
+                </p>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        function toggleFields(show) {
+            const fields = document.getElementById('provider-fields');
+            const titulo = document.getElementById('servico-titulo');
+            const exp = document.getElementById('servico-exp');
+
+            if (show) {
+                fields.classList.add('show-fields');
+                titulo.required = true;
+                exp.required = true;
+            } else {
+                fields.classList.remove('show-fields');
+                titulo.required = false;
+                exp.required = false;
+                // Limpar campos ao ocultar para evitar dados residuais
+                titulo.value = "";
+                exp.value = "";
+            }
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2026 UniMarket </p>
+    </footer>
+
+</body>
+</html>
