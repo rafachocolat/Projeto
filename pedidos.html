@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Pedidos - UniService</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">U</div>
+                <span>UniService</span>
+            </a>
+            <div class="nav-links">
+                <a href="/marketplace">Marketplace</a>
+                <a href="/pedidos">Meus Pedidos</a>
+                <a href="/perfil">Perfil</a>
+                <a href="#" onclick="logout()" class="btn btn-primary">Sair</a>
+            </div>
+        </div>
+    </nav>
+
+    <section style="padding: 40px 0;">
+        <div class="container">
+            <h1>Meus Pedidos</h1>
+            <div class="grid" id="pedidos" style="margin-top: 30px;">
+                <p>Carregando...</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 UniService - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/api.js"></script>
+    <script>
+        function logout() {
+            fetch('/api/auth/logout').then(() => {
+                localStorage.removeItem('usuario');
+                window.location.href = '/';
+            });
+        }
+    </script>
+</body>
+</html>

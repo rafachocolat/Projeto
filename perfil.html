@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - UniService</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">U</div>
+                <span>UniService</span>
+            </a>
+            <div class="nav-links">
+                <a href="/marketplace">Marketplace</a>
+                <a href="/meus-servicos">Meus Serviços</a>
+                <a href="/perfil">Perfil</a>
+                <a href="#" onclick="logout()" class="btn btn-primary">Sair</a>
+            </div>
+        </div>
+    </nav>
+
+    <section style="padding: 40px 0;">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h1>Meu Perfil</h1>
+                </div>
+
+                <div id="perfilInfo">
+                    <p>Carregando...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 UniService - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/api.js"></script>
+    <script>
+        async function carregarPerfil() {
+            const usuario = JSON.parse(localStorage.getItem('usuario'));
+            if (!usuario) {
+                window.location.href = '/login';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/usuarios/${usuario.id}`);
+                const dados = await response.json();
+
+                document.getElementById('perfilInfo').innerHTML = `
+                    <div style="margin-bottom: 30px;">
+                        <p><strong>Nome:</strong> ${dados.nome}</p>
+                        <p><strong>Email:</strong> ${dados.email}</p>
+                        <p><strong>Telefone:</strong> ${dados.telefone || 'Não informado'}</p>
+                        <p><strong>Tipo:</strong> ${dados.tipo_usuario === 'cliente' ? 'Cliente' : 'Prestador'}</p>
+                        <p><strong>Bio:</strong> ${dados.bio || 'Não informado'}</p>
+                    </div>
+                `;
+            } catch (erro) {
+                console.error(erro);
+                document.getElementById('perfilInfo').innerHTML = '<p>Erro ao carregar perfil</p>';
+            }
+        }
+
+        function logout() {
+            fetch('/api/auth/logout').then(() => {
+                localStorage.removeItem('usuario');
+                window.location.href = '/';
+            });
+        }
+
+        carregarPerfil();
+    </script>
+</body>
+</html>

@@ -1,53 +1,90 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UniMarket - Login</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Login - UniService</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-
-    <header>
-        <h1><a href="index.html">UniMarket</a></h1>
-        <nav>
-            <a href="index.html">Início</a>
-            <a href="marketplace.html">Serviços</a>
-            <a href="anunciar.html">Anunciar</a>
-            <a href="login.html">Login</a>
-            <a href="cadastro.html" class="btn">Cadastre-se</a>
-        </nav>
-    </header>
-
-    <main class="container">
-        <div class="form-container">
-            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">Acesse sua conta</h2>
-            <form action="#">
-                <div class="form-group">
-                    <label for="email">E-mail Acadêmico</label>
-                    <input type="email" id="email" placeholder="seuemail@aluno.edu.br" required>
-                </div>
-                <div class="form-group">
-                    <label for="senha">Senha</label>
-                    <input type="password" id="senha" placeholder="********" required>
-                </div>
-                
-                <div class="checkbox-group">
-                    <input type="checkbox" id="lembrar" name="lembrar">
-                    <label for="lembrar">Lembrar de mim por 30 dias</label>
-                </div>
-
-                <button type="submit" class="btn btn-alt" style="width: 100%; margin-top: 15px;">Entrar</button>
-                <p style="text-align: center; margin-top: 15px; font-size: 0.9rem;">
-                    Não tem conta? <a href="cadastro.html" style="color: var(--secondary-color); font-weight: bold;">Cadastre-se aqui</a>.
-                </p>
-            </form>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">U</div>
+                <span>UniService</span>
+            </a>
+            <div class="nav-links">
+                <a href="/">Voltar</a>
+            </div>
         </div>
-    </main>
+    </nav>
+
+    <section style="min-height: calc(100vh - 200px); display: flex; align-items: center;">
+        <div class="form-container">
+            <div class="form-header">
+                <h1>Entrar</h1>
+                <p>Acesse sua conta UniService</p>
+            </div>
+
+            <div id="erro" class="alert alert-danger" style="display: none;"></div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="seu@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" name="senha" placeholder="Sua senha" required>
+                </div>
+
+                <button type="submit" class="form-submit">Entrar</button>
+            </form>
+
+            <div class="form-footer">
+                <p>Não tem conta? <a href="/cadastro">Crie uma</a></p>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2026 UniMarket </p>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 UniService - Todos os direitos reservados</p>
+            </div>
+        </div>
     </footer>
 
+    <script src="/js/api.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const dados = Object.fromEntries(formData);
+
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dados)
+                });
+
+                const data = await response.json();
+
+                if (data.sucesso) {
+                    localStorage.setItem('usuario', JSON.stringify(data.usuario));
+                    window.location.href = '/marketplace';
+                } else {
+                    document.getElementById('erro').textContent = data.erro;
+                    document.getElementById('erro').style.display = 'block';
+                }
+            } catch (erro) {
+                console.error(erro);
+                document.getElementById('erro').textContent = 'Erro ao fazer login';
+                document.getElementById('erro').style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,60 +1,109 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UniMarket - Início</title>
-    <link rel="stylesheet" href="style.css">
+    <title>UniService - Marketplace de Serviços Universitários</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">U</div>
+                <span>UniService</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="/login" class="btn btn-primary">Entrar</a>
+            </div>
+        </div>
+    </nav>
 
-    <header>
-        <h1><a href="index.html">UniMarket</a></h1>
-        <nav>
-            <a href="index.html">Início</a>
-            <a href="marketplace.html">Serviços</a>
-            <a href="anunciar.html">Anunciar</a>
-            <a href="login.html">Login</a>
-            <a href="cadastro.html" class="btn">Cadastre-se</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h1>Conectando Talentos Universitários</h1>
-        <p>A maior rede de serviços acadêmicos feita por alunos para alunos.</p>
-        <div style="margin-top: 25px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
-            <a href="marketplace.html" class="btn btn-alt">Explorar Marketplace</a>
-            <a href="anunciar.html" class="btn">Oferecer meu Serviço</a>
+    <section style="padding: 60px 0; background: linear-gradient(135deg, #f0f9ff 0%, #fff 100%);">
+        <div class="container">
+            <h1>Conecte-se com Talentos Universitários</h1>
+            <p>O UniService é o marketplace que conecta estudantes que oferecem e buscam serviços acadêmicos, técnicos e criativos.</p>
+            <div style="display: flex; gap: 15px; margin-top: 30px;">
+                <a href="/marketplace" class="btn btn-primary">Procurar Serviços</a>
+                <a href="/cadastro" class="btn btn-outline">Oferecer Serviço</a>
+            </div>
         </div>
     </section>
 
-    <main class="container">
-        <h2 style="text-align: center; color: var(--primary-color);">Como funciona?</h2>
-        <div class="grid">
-            <div class="card" style="text-align: center; border-top: 6px solid var(--secondary-color);">
-                <h3>1. Encontre</h3>
-                <p>Busque por monitorias, revisões, artes ou ajuda em projetos específicos.</p>
-            </div>
-            <div class="card" style="text-align: center; border-top: 6px solid var(--secondary-color);">
-                <h3>2. Contrate</h3>
-                <p>Combine os detalhes diretamente com o prestador do serviço pelo chat.</p>
-            </div>
-            <div class="card" style="text-align: center; border-top: 6px solid var(--secondary-color);">
-                <h3>3. Evolua</h3>
-                <p>Melhore suas notas e ajude a comunidade acadêmica a crescer.</p>
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <h2>Serviços Disponíveis</h2>
+            <div class="grid" style="margin-top: 30px;">
+                <div class="card">
+                    <div style="font-size: 40px; margin-bottom: 15px;">📚</div>
+                    <h3>Tutoria Acadêmica</h3>
+                    <p>Aulas particulares, reforço escolar e preparação para provas</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 40px; margin-bottom: 15px;">💻</div>
+                    <h3>Desenvolvimento</h3>
+                    <p>Criação de sites, apps e soluções de programação</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 40px; margin-bottom: 15px;">✍️</div>
+                    <h3>Redação & Revisão</h3>
+                    <p>Correção de textos, redações e trabalhos acadêmicos</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 40px; margin-bottom: 15px;">🎨</div>
+                    <h3>Design Gráfico</h3>
+                    <p>Criação de logos, flyers e materiais visuais</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 40px; margin-bottom: 15px;">🌐</div>
+                    <h3>Tradução</h3>
+                    <p>Tradução de textos e documentos em diversos idiomas</p>
+                </div>
+                <div class="card">
+                    <div style="font-size: 40px; margin-bottom: 15px;">💼</div>
+                    <h3>Consultoria</h3>
+                    <p>Orientação profissional e consultoria especializada</p>
+                </div>
             </div>
         </div>
-    </main>
-
-
-
-
-
-
+    </section>
 
     <footer>
-        <p>&copy; 2026 UniMarket </p>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>UniService</h3>
+                    <p>Marketplace de serviços universitários</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Plataforma</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/marketplace">Marketplace</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Empresa</h3>
+                    <ul>
+                        <li><a href="#">Sobre Nós</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Termos</a></li>
+                        <li><a href="#">Privacidade</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 UniService - Todos os direitos reservados</p>
+            </div>
+        </div>
     </footer>
 
+    <script src="/js/api.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>

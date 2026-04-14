@@ -1,74 +1,176 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UniMarket - Marketplace de Serviços</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Marketplace - UniService</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-
-    <header>
-        <h1><a href="index.html">UniMarket</a></h1>
-        <nav>
-            <a href="index.html">Início</a>
-            <a href="marketplace.html">Serviços</a>
-            <a href="anunciar.html">Anunciar</a>
-            <a href="login.html">Login</a>
-            <a href="cadastro.html" class="btn">Cadastre-se</a>
-        </nav>
-    </header>
-
-    <main class="container">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
-            <h2 style="color: var(--primary-color);">Marketplace de Serviços</h2>
-            <a href="anunciar.html" class="btn">Quero Oferecer um Serviço</a>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">📚</div>
+                UniService
+            </a>
+            <div class="nav-links">
+                <a href="/">Início</a>
+                <a href="/marketplace">Marketplace</a>
+                <a href="/meus-servicos">Meus Serviços</a>
+                <a href="/perfil">Perfil</a>
+                <button class="btn btn-primary" onclick="logout()">Sair</button>
+            </div>
         </div>
-        <p style="margin-top: 10px;">Explore as ofertas de outros alunos para turbinar seus estudos.</p>
+    </nav>
 
-        <div class="grid">
-            <div class="card">
-                <h3>Monitoria de Cálculo I</h3>
-                <p>Ajudo a passar em Cálculo! Explicação simples e resolução de listas.</p>
-                <p style="margin-top: 10px; font-weight: bold; color: var(--secondary-color);">R$ 30,00 / hora</p>
-                <a href="#" class="btn btn-alt" style="margin-top: 10px; width: 100%; text-align: center;">Contratar</a>
+    <!-- Main Content -->
+    <main class="container" style="margin-top: 40px; margin-bottom: 40px;">
+        <h1 style="text-align: center; margin-bottom: 30px;">🔍 Procurar Serviços</h1>
+
+        <!-- Filtros -->
+        <div style="background: var(--cinza-claro); padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+            <h3 style="margin-bottom: 15px;">Filtros</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Categoria</label>
+                    <select id="filtroCategoria" style="width: 100%; padding: 10px; border: 2px solid var(--azul-acessivel); border-radius: 5px;">
+                        <option value="">Todas as categorias</option>
+                        <option value="programacao">Programação</option>
+                        <option value="design">Design</option>
+                        <option value="redacao">Redação</option>
+                        <option value="tutoria">Tutoria</option>
+                        <option value="traducao">Tradução</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+                <div>
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Preço Máximo</label>
+                    <input type="number" id="filtroPreco" placeholder="Ex: 500" style="width: 100%; padding: 10px; border: 2px solid var(--azul-acessivel); border-radius: 5px;">
+                </div>
+                <div style="display: flex; align-items: flex-end;">
+                    <button class="btn btn-primary" onclick="filtrarServicos()" style="width: 100%;">🔍 Filtrar</button>
+                </div>
             </div>
-            <div class="card">
-                <h3>Formatação ABNT</h3>
-                <p>Deixo seu TCC ou artigo prontinho nas normas da ABNT sem erros.</p>
-                <p style="margin-top: 10px; font-weight: bold; color: var(--secondary-color);">R$ 5,00 / página</p>
-                <a href="#" class="btn btn-alt" style="margin-top: 10px; width: 100%; text-align: center;">Contratar</a>
-            </div>
-            <div class="card">
-                <h3>Design de Slides</h3>
-                <p>Crio apresentações profissionais e criativas para seus seminários.</p>
-                <p style="margin-top: 10px; font-weight: bold; color: var(--secondary-color);">R$ 40,00 / deck</p>
-                <a href="#" class="btn btn-alt" style="margin-top: 10px; width: 100%; text-align: center;">Contratar</a>
-            </div>
-            <div class="card">
-                <h3>Revisão de Código C++</h3>
-                <p>Sou do 5º período e ajudo a debugar seus algoritmos de estrutura de dados.</p>
-                <p style="margin-top: 10px; font-weight: bold; color: var(--secondary-color);">R$ 25,00 / hora</p>
-                <a href="#" class="btn btn-alt" style="margin-top: 10px; width: 100%; text-align: center;">Contratar</a>
-            </div>
-            <div class="card">
-                <h3>Tradução de Artigos</h3>
-                <p>Tradução técnica Inglês-Português para artigos científicos.</p>
-                <p style="margin-top: 10px; font-weight: bold; color: var(--secondary-color);">R$ 15,00 / lauda</p>
-                <a href="#" class="btn btn-alt" style="margin-top: 10px; width: 100%; text-align: center;">Contratar</a>
-            </div>
-            <div class="card">
-                <h3>Instalação de Softwares</h3>
-                <p>Ajudo a configurar seu ambiente de desenvolvimento (Docker, SQL, etc).</p>
-                <p style="margin-top: 10px; font-weight: bold; color: var(--secondary-color);">R$ 50,00 / serviço</p>
-                <a href="#" class="btn btn-alt" style="margin-top: 10px; width: 100%; text-align: center;">Contratar</a>
-            </div>
+        </div>
+
+        <!-- Lista de Serviços -->
+        <div id="servicosList" class="grid">
+            <p style="text-align: center; color: var(--cinza);">Carregando serviços...</p>
         </div>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 UniMarket </p>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>UniService</h3>
+                    <p>Marketplace de serviços universitários</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links</h3>
+                    <ul>
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/marketplace">Marketplace</a></li>
+                        <li><a href="/perfil">Perfil</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Suporte</h3>
+                    <ul>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Termos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Redes Sociais</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 UniService. Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
 
+    <script src="/js/api.js"></script>
+    <script>
+        let todosServicos = [];
+
+        // Carregar serviços ao abrir a página
+        window.addEventListener('load', () => {
+            carregarServicos();
+        });
+
+        // Carregar todos os serviços
+        function carregarServicos() {
+            fetch('/api/servicos')
+                .then(res => res.json())
+                .then(servicos => {
+                    todosServicos = servicos;
+                    exibirServicos(servicos);
+                })
+                .catch(err => {
+                    console.error('Erro ao carregar serviços:', err);
+                    document.getElementById('servicosList').innerHTML = '<p style="color: red;">Erro ao carregar serviços</p>';
+                });
+        }
+
+        // Exibir serviços
+        function exibirServicos(servicos) {
+            const lista = document.getElementById('servicosList');
+            
+            if (servicos.length === 0) {
+                lista.innerHTML = '<p style="text-align: center; color: var(--cinza);">Nenhum serviço encontrado</p>';
+                return;
+            }
+
+            lista.innerHTML = servicos.map(s => `
+                <div class="card">
+                    <h3>${s.titulo}</h3>
+                    <p><strong>Prestador:</strong> ${s.prestador_nome}</p>
+                    <p><strong>Categoria:</strong> ${s.categoria}</p>
+                    <p>${s.descricao}</p>
+                    <p style="color: var(--verde-acessivel); font-weight: bold; font-size: 18px;">R$ ${parseFloat(s.preco).toFixed(2)}</p>
+                    ${s.tempo_entrega ? `<p><strong>Tempo de entrega:</strong> ${s.tempo_entrega} dias</p>` : ''}
+                    <button class="btn btn-secondary" onclick="contratarServico(${s.id})" style="width: 100%; margin-top: 10px;">✓ Contratar</button>
+                </div>
+            `).join('');
+        }
+
+        // Filtrar serviços
+        function filtrarServicos() {
+            const categoria = document.getElementById('filtroCategoria').value;
+            const precoMax = parseFloat(document.getElementById('filtroPreco').value) || Infinity;
+
+            const filtrados = todosServicos.filter(s => {
+                const matchCategoria = !categoria || s.categoria === categoria;
+                const matchPreco = s.preco <= precoMax;
+                return matchCategoria && matchPreco;
+            });
+
+            exibirServicos(filtrados);
+        }
+
+        // Contratar serviço
+        function contratarServico(servicoId) {
+            alert('✓ Serviço contratado com sucesso!');
+            // Aqui você pode adicionar lógica para criar um pedido
+        }
+
+        // Logout
+        function logout() {
+            fetch('/api/auth/logout')
+                .then(() => {
+                    window.location.href = '/';
+                });
+        }
+    </script>
 </body>
 </html>
